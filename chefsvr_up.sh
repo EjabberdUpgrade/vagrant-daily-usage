@@ -1,7 +1,7 @@
 #!/bin/sh
-set -e # Exit script on first error.
-set -x # Print commands and their arguments as they are executed.
-
+echo on
+echo "Downloading chef server install script"
 curl -L "https://www.opscode.com/chef/install.sh" | sudo bash
+echo "Done setup chef server.. Reconfigure and do Bootstrap test"
 sudo chef-server-ctl reconfigure
 sudo chef-server-ctl test

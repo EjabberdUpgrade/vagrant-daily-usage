@@ -46,7 +46,7 @@ Vagrant.configure("2") do |config|
   #
   config.vm.provider :virtualbox do |vb|
      # Don't boot with headless mode
-     vb.gui = false
+     vb.gui = true
      vb.name = "dev_app_erlang"     
   #
   #   # Use VBoxManage to customize the VM. For example to change memory:
@@ -101,7 +101,7 @@ Vagrant.configure("2") do |config|
 
   #Setup chefserver and all its dependencies
   config.vm.provision :shell, :path =>"chefsvr_up.sh" 
-  
+
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
