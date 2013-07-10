@@ -46,7 +46,7 @@ Vagrant.configure("2") do |config|
   #
   config.vm.provider :virtualbox do |vb|
      # Don't boot with headless mode
-     vb.gui = true
+     vb.gui = false     
      vb.name = "dev_app_erlang"     
   #
   #   # Use VBoxManage to customize the VM. For example to change memory:
