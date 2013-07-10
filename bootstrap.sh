@@ -6,3 +6,4 @@ COOKBOOK=cookbook
 vagrant init ${VM_NAME}
 vagrant up
 [ -d ${COOKBOOK} ] || mkdir -p ${COOKBOOK}
+
