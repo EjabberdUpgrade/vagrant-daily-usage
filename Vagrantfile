@@ -16,7 +16,9 @@ Vagrant.configure("2") do |config|
   
   config.vm.graceful_halt_retry_count = 5
   config.vm.graceful_halt_retry_interval = 3
-  config.vm.hostname = "dev-app-erlang"
+  config.vm.hostname = "dev-app-erlang.spark.net"
+  config.vbguest.auto_update = false
+  config.vbguest.no_remote = true
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -97,6 +99,9 @@ Vagrant.configure("2") do |config|
   #   puppet.manifest_file  = "init.pp"
   # end
 
+  #Setup chefserver and all its dependencies
+  config.vm.provision :shell, :path =>"chefsvr_up.sh" 
+  
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
