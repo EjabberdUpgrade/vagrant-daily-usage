@@ -1,9 +1,11 @@
 #!/bin/sh
 echo on
-RUNNER_SCRIPT_DIR=$(cd ${0%/*} && pwd)
+RUNNER_SCRIPT_DIR=$(pwd)
 VM_NAME=ubuntuchef1164
 COOKBOOK=cookbook
 vagrant init ${VM_NAME}
-vagrant up
+vagrant up --provider=virtualbox
 [ -d ${COOKBOOK} ] || mkdir -p ${COOKBOOK}
+
+vagrant list ${VM_NAME}
 

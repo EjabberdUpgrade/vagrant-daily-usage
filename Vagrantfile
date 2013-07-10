@@ -13,6 +13,10 @@ Vagrant.configure("2") do |config|
   # doesn't already exist on the user's system.
   # config.vm.box_url = "http://domain.com/path/to/above.box"
   config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/raring/20130709/raring-server-cloudimg-amd64-vagrant-disk1.box"
+  
+  config.vm.graceful_halt_retry_count = 5
+  config.vm.graceful_halt_retry_interval = 3
+  config.vm.hostname = "dev-app-erlang"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -39,11 +43,32 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider :virtualbox do |vb|
-  #   # Don't boot with headless mode
-     vb.gui = true
+     # Don't boot with headless mode
+     vb.gui = false
+     vb.name = "dev_app_erlang"     
   #
   #   # Use VBoxManage to customize the VM. For example to change memory:
-     vb.customize ["modifyvm", :id, "--memory", "1024"]
+     vb.customize ["modifyvm", :id, 
+     "--memory", "4000",
+     "--audio", "none",
+     "--vram","100",
+     "--cpus","8",
+     "--bridgeadapter1","Intel(R) 82579LM Gigabit Network Connection",
+     "--bridgeadapter2","Intel(R) 82579LM Gigabit Network Connection",
+     "--accelerate3d","on",
+     "--accelerate2dvideo","on",
+     "--clipboard", "bidirectional",
+     "--usb", "off",
+     "--usbehci", "off",
+     "--teleporter", "off"
+     ]
+
+     vb.customize ["createhd",  
+     "--filename","dev_vm_erlang",
+     "--size", "250000",
+     "--variant", "Standard"
+     ]
+
   end
   #
   # View the documentation for the provider you're using for more
